@@ -11,10 +11,8 @@ import brand2 from "../../assets/Brand2.png";
 import brand3 from "../../assets/Brand3.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import DatePicker from 'react-datepicker';
-import TimePicker from 'react-time-picker';
-
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const API_BASE_URL = "https://cnpm-api-thanh-3cf82c42b226.herokuapp.com";
 
@@ -40,20 +38,23 @@ const SearchBar = () => {
       }
     };
     getDanhSachSanBay();
-  }, []); 
+  }, []);
 
   // Xử lý click toàn cục để ẩn danh sách sân bay khi nhấp ra ngoài
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setShowDropdown(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -99,7 +100,7 @@ const SearchBar = () => {
       }
     };
     getDanhSachTramDung();
-  }, []); 
+  }, []);
 
   const handleInputClickTD = () => {
     setShowDropdownTD(true);
@@ -125,49 +126,57 @@ const SearchBar = () => {
   // Xử lý click toàn cục để ẩn danh sách trạm khi nhấp ra ngoài
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRefTD.current && !containerRefTD.current.contains(event.target)) {
+      if (
+        containerRefTD.current &&
+        !containerRefTD.current.contains(event.target)
+      ) {
         setShowDropdownTD(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
+  //Xu ly chon ngay
   const [selectedDate, setSelectedDate] = useState(null);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const calendarRef = useRef(null);
 
-  // Xử lý click toàn cục để ẩn lịch khi nhấp ra ngoài
+  //Xu ly chon gio
+  const [selectedMinute, setSelectedMinute] = useState("");
+  const [selectedHour, setSelectedHour] = useState("");
+  const [showDropdownTime, setShowDropdownTime] = useState(false);
+  const containerRefTime = useRef(null);
+
+  // Tạo mảng giờ và phút (customize)
+  const hours = Array.from({ length: 24 }, (_, i) => i.toString());
+  const minutes = Array.from({ length: 12 }, (_, i) =>
+    (i * 5).toString().padStart(2, "0")
+  ); // 0, 5, 10, ..., 55
+  //Xu ly chon gio
+  const handleConfirm = () => {
+    console.log(`${selectedHour}:${selectedMinute}`);
+    setShowDropdown(false);
+  };
+  //xử lý click toàn cục để ẩn danh sách giờ khi nhấp ra ngoài
   useEffect(() => {
-    
-    const handleClickOutside = (event) => {
-      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
-        setShowCalendar(false);
+    const handleClickOutsideTime = (event) => {
+      if (
+        containerRefTime.current &&
+        !containerRefTime.current.contains(event.target)
+      ) {
+        setShowDropdownTime(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-
+    document.addEventListener("mousedown", handleClickOutsideTime);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutsideTime);
     };
   }, []);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-    setShowCalendar(false); // Ẩn lịch khi chọn ngày
-  };
-  //xử lý chọn giờ 
-  const [time, setTime] = useState('10:00');
-  const [showTimePicker, setShowTimePicker] = useState(false);
-
-  const handleToggleTimePicker = () => {
-    setShowTimePicker(!showTimePicker);
-  };
   return (
     <div
       className="h-auto bg-cover"
@@ -180,7 +189,10 @@ const SearchBar = () => {
       </div>
       <div className="container mx-auto pt-12 pb-52 flex justify-center">
         {/* From Airport */}
-        <div className="flex flex-col items-start py-2 max-w-md relative" ref={containerRef}>
+        <div
+          className="flex flex-col items-start py-2 max-w-md relative"
+          ref={containerRef}
+        >
           <label className="text-white flex items-center space-x-2">
             <span>Từ sân bay</span>
           </label>
@@ -215,11 +227,14 @@ const SearchBar = () => {
         </div>
 
         {/* Arrived Locate */}
-        <div className="flex flex-col items-start py-2 relative" ref={containerRefTD}>
+        <div
+          className="flex flex-col items-start py-2 relative"
+          ref={containerRefTD}
+        >
           <label className="text-white flex items-center space-x-2">
             <span>Đến khu vực địa chỉ tòa nhà</span>
           </label>
-          <div className="flex items-center bg-white shadow rounded-lg mt-3 " >
+          <div className="flex items-center bg-white shadow rounded-lg mt-3 ">
             <img src={icLocation} alt="icon-flight" className="h-6 w-6 m-3" />
             <input
               type="text"
@@ -246,55 +261,92 @@ const SearchBar = () => {
         </div>
 
         {/* Pick-up Date */}
-        <div className="flex flex-col items-start py-2 relative" ref={calendarRef}>
+        <div className="flex flex-col items-start py-2 relative">
           <label className="text-white flex items-center space-x-2">
             <span>Ngày đón</span>
           </label>
           <div
-            className="flex items-center bg-white shadow rounded-lg mt-3" onClick={() => setShowCalendar(!showCalendar)}>
+            className="flex items-center bg-white shadow rounded-lg mt-3"
+          >
             <img src={icCalender} alt="icon-flight" className="h-6 w-6 m-3" />
-            <input
+            {/* <input
               type="text"
               className="bg-transparent outline-none mx-2 w-52"
-              value={selectedDate ? selectedDate.toLocaleDateString() : ''}
-              readOnly
-              placeholder="Chọn ngày"
+            /> */}
+            <DatePicker
+              className=""
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              dateFormat="dd/MM/yyyy"
+              minDate={new Date()}
+              showYearDropdown
             />
-           {showCalendar && (
-            <div className="absolute top-full left-0 bg-white shadow rounded-lg mt-3 w-full max-h-64 overflow-y-auto z-10">
-              <DatePicker
-                selected={selectedDate}
-                onChange={handleDateChange}
-                dateFormat="dd/MM/yyyy"
-                className="bg-transparent w-full"
-              />
-            </div>
-          )}
           </div>
         </div>
         {/* Pick-up Time */}
-        <div className="flex flex-col items-start py-2 relative">
+        <div
+          className="flex flex-col items-start py-2 relative"
+          ref={containerRefTime}
+        >
           <label className="text-white flex items-center space-x-2">
             <span>Từ sân bay</span>
           </label>
-          <div className="flex items-center bg-white shadow rounded-lg mt-3">
+          <div className="flex items-center bg-white shadow rounded-lg mt-3" onClick={() => setShowDropdownTime(!showDropdownTime)}>
             <img src={icClock} alt="icon-flight" className="h-6 w-6 m-3" />
             <input
-              type="text"
-              className="bg-transparent outline-none mx-2 w-32"
-              value={time}
-          readOnly
-          onClick={handleToggleTimePicker}
-            />
+                type="text"
+                placeholder="Giờ"
+                className="bg-transparent outline-none mx-2 w-10 text-center"
+                value={selectedHour}
+                readOnly
+              />
+              <span>:</span>
+              <input
+                type="text"
+                placeholder="Phút"
+                className="bg-transparent outline-none mx-2 w-10 text-center"
+                value={selectedMinute}
+                readOnly
+              />
           </div>
-          {showTimePicker && (
-        <div className="absolute top-full left-0 bg-white shadow rounded-lg mt-3 w-full max-h-64 overflow-y-auto">
-          <TimePicker
-            onChange={setTime}
-            value={time}
-          />
-        </div>
-      )}
+          {showDropdownTime && (
+            <div className="absolute top-full left-0 bg-white shadow rounded-lg mt-3 w-full max-h-64 overflow-y-auto">
+              <div className="flex flex-wrap justify-around p-2">
+                <div className="flex flex-col items-center">
+                  <span>Giờ</span>
+                  {hours.map((hour) => (
+                    <div
+                      key={hour}
+                      className="cursor-pointer p-1"
+                      onClick={() => setSelectedHour(hour)}
+                    >
+                      {hour}
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col items-center">
+                  <span>Phút</span>
+                  {minutes.map((minute) => (
+                    <div
+                      key={minute}
+                      className="cursor-pointer p-1"
+                      onClick={() => setSelectedMinute(minute)}
+                    >
+                      {minute}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-center p-2">
+                <button
+                  className="bg-blue-500 text-white p-2 rounded-lg"
+                  onClick={handleConfirm}
+                >
+                  Xác nhận
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         {/* Search Button */}
         <Link to="/listBooking">
