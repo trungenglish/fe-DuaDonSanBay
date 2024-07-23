@@ -4,6 +4,7 @@ import SearchBar from "./components/header/Search.jsx";
 import { MainHome } from "./components/main/home/MainHome.jsx";
 import { ListBooking } from "./components/main/listBooking/ListBooking.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import DatChoCuaToi from "./components/main/DatChoCuaToi/DatChoCuaToi.jsx";
 function App() {
   return (
     <Router>
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route exact path="/" Component={MainHome} />
         <Route path="/listBooking" Component={ListBooking} />
+        <Route path="/my-booking" Component={DatChoCuaToi} />
       </Routes>
       <Footer />
     </Router>

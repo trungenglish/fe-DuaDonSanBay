@@ -1,7 +1,12 @@
+import LeftNavBar from "./LeftNavBar";
+import RightContent from "./RightContent";
 function DatChoCuaToi() {
     return ( 
-        <div className="">
-            <h1 className="text-black">Danh sach dat cho</h1>
+        <div className=" flex w-full justify-center">
+            <div className="w-[1222px]">
+                <LeftNavBar />
+                <RightContent />
+            </div>
         </div>
      );
 }
