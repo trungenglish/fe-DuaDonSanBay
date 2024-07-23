@@ -6,6 +6,9 @@ import icUser from "../../assets/iconUser.png";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
+    // const handleButtonClickMyBooking = () => {
+    //   window.location.href = '/my-booking'; // URL của trang my booking
+    // };
   return (
     <header
       className="mx-auto text-white py-2 border-b border-gray-200"
@@ -46,7 +49,7 @@ export const Header = () => {
             <a href="#" className="hover:text-gray-300  flex items-center">
               Hợp tác với chúng tôi
             </a>
-            <a href="#" className="hover:text-gray-300  flex items-center">
+            <a href="/my-booking" className="hover:text-gray-300  flex items-center">
               Đặt chỗ của tôi
             </a>
             <div className="flex space-x-4">

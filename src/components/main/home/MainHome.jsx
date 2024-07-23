@@ -43,7 +43,7 @@ export const MainHome = () => {
       style={{ backgroundImage: `url(${bgMain})`, backgroundSize: "cover" }}
     >
       <div className="container max-w-screen-xl mx-auto text-center">
-        <h2 className="text-2xl font-semibold mb-8">
+        <h2 className="text-4xl font-semibold mb-8 text-black">
           Lý do nên đặt chỗ với Traveloki - Dịch vụ đưa đón sân bay
         </h2>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
@@ -64,7 +64,7 @@ export const MainHome = () => {
       </div>
 
       <div className="container m-auto max-w-4xl mt-20">
-        <h1 className="text-3xl font-bold text-center my-8">Cách đặt chỗ</h1>
+        <h1 className="text-4xl font-bold text-center my-8">Cách đặt chỗ</h1>
       </div>
       {/* Bước 1 */}
       <div className=" grid grid-cols-2 container m-auto max-w-4xl mt-20">

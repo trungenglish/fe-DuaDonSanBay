@@ -17,7 +17,7 @@ export const Footer = () => {
           <img src={bannerTopFooter} alt="banner" className="w-full"/>
         </div>
         <div className="container max-w-screen-xl mx-auto px-4">
-          <div className="p-8">
+          <div className="py-8">
             <img src={logoTraveloki} alt="Logo" className="h-8 mb-4" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

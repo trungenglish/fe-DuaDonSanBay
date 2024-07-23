@@ -188,77 +188,80 @@ const SearchBar = () => {
         </h1>
       </div>
       <div className="container mx-auto pt-12 pb-52 flex justify-center">
-        {/* From Airport */}
-        <div
-          className="flex flex-col items-start py-2 max-w-md relative"
-          ref={containerRef}
-        >
-          <label className="text-white flex items-center space-x-2">
-            <span>Từ sân bay</span>
-          </label>
-          <div className="flex items-center bg-white shadow rounded-lg mt-3 w-full">
-            <img src={icFlight} alt="icon-flight" className="h-6 w-6 m-3" />
-            <input
-              type="text"
-              placeholder="Ví dụ sân bay quốc tế Narita"
-              className="bg-transparent outline-none mx-2 w-64 "
-              value={selectedAirport}
-              onClick={handleInputClick}
-              onChange={handleInputChange}
-            />
-          </div>
-          {showDropdown && filteredAirports && (
-            <div className="absolute top-full left-0 bg-white shadow rounded-lg mt-3 w-full max-h-64 overflow-y-auto">
-              {filteredAirports.map((airport) => (
-                <div
-                  key={airport.MaSB}
-                  className="p-2 border-b cursor-pointer"
-                  onMouseDown={() => handleAirportClick(airport)}
-                >
-                  {airport.TenSanBay}
-                </div>
-              ))}
+        <div className="inline-flex relative">
+          {/* From Airport */}
+          <div
+            className="flex flex-col items-start py-2 max-w-md relative"
+            ref={containerRef}
+          >
+            <label className="text-white flex items-center space-x-2">
+              <span>Từ sân bay</span>
+            </label>
+            <div className="flex items-center bg-white shadow rounded-l-lg mt-3 w-full">
+              <img src={icFlight} alt="icon-flight" className="h-6 w-6 m-3" />
+              <input
+                type="text"
+                placeholder="Ví dụ sân bay quốc tế Narita"
+                className="bg-transparent outline-none mx-2 w-64 "
+                value={selectedAirport}
+                onClick={handleInputClick}
+                onChange={handleInputChange}
+              />
             </div>
-          )}
+            {showDropdown && filteredAirports && (
+              <div className="absolute top-full left-0 bg-white shadow rounded-lg mt-3 w-full max-h-64 overflow-y-auto">
+                {filteredAirports.map((airport) => (
+                  <div
+                    key={airport.MaSB}
+                    className="p-2 border-b cursor-pointer"
+                    onMouseDown={() => handleAirportClick(airport)}
+                  >
+                    {airport.TenSanBay}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="absolute z-20 left-[47.5%]">
+            <img src={icRotate} alt="icon-rotate" className=" h-8 w-8 mt-[3.2rem]" />
+          </div>
+
+          {/* Arrived Locate */}
+          <div
+            className="flex flex-col items-start py-2 relative"
+            ref={containerRefTD}
+          >
+            <label className="text-white flex items-center space-x-2">
+              <span>Đến khu vực địa chỉ tòa nhà</span>
+            </label>
+            <div className="flex items-center bg-white shadow mt-3 ">
+              <img src={icLocation} alt="icon-flight" className="h-6 w-6 my-3 mr-3 ml-5" />
+              <input
+                type="text"
+                placeholder="Ví dụ sân bay quốc tế Narita"
+                className="bg-transparent outline-none mx-2 w-64"
+                value={selectedTramDung}
+                onClick={handleInputClickTD}
+                onChange={handleInputChangeTD}
+              />
+            </div>
+            {showDropdownTD && filteredTramDung && (
+              <div className="absolute top-full left-0 bg-white shadow rounded-lg mt-3 w-full max-h-64 overflow-y-auto">
+                {filteredTramDung.map((tramdung) => (
+                  <div
+                    key={tramdung.MaTram}
+                    className="p-2 border-b cursor-pointer"
+                    onMouseDown={() => handleTramDungClick(tramdung)}
+                  >
+                    {tramdung.DiaChi}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="">
-          <img src={icRotate} alt="icon-rotate" className="h-8 w-8 mt-14" />
-        </div>
-
-        {/* Arrived Locate */}
-        <div
-          className="flex flex-col items-start py-2 relative"
-          ref={containerRefTD}
-        >
-          <label className="text-white flex items-center space-x-2">
-            <span>Đến khu vực địa chỉ tòa nhà</span>
-          </label>
-          <div className="flex items-center bg-white shadow rounded-lg mt-3 ">
-            <img src={icLocation} alt="icon-flight" className="h-6 w-6 m-3" />
-            <input
-              type="text"
-              placeholder="Ví dụ sân bay quốc tế Narita"
-              className="bg-transparent outline-none mx-2 w-64"
-              value={selectedTramDung}
-              onClick={handleInputClickTD}
-              onChange={handleInputChangeTD}
-            />
-          </div>
-          {showDropdownTD && filteredTramDung && (
-            <div className="absolute top-full left-0 bg-white shadow rounded-lg mt-3 w-full max-h-64 overflow-y-auto">
-              {filteredTramDung.map((tramdung) => (
-                <div
-                  key={tramdung.MaTram}
-                  className="p-2 border-b cursor-pointer"
-                  onMouseDown={() => handleTramDungClick(tramdung)}
-                >
-                  {tramdung.DiaChi}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
 
         {/* Pick-up Date */}
         <div className="flex flex-col items-start py-2 relative">
@@ -266,7 +269,7 @@ const SearchBar = () => {
             <span>Ngày đón</span>
           </label>
           <div
-            className="flex items-center bg-white shadow rounded-lg mt-3"
+            className="flex items-center bg-white shadow  mt-3"
           >
             <img src={icCalender} alt="icon-flight" className="h-6 w-6 m-3" />
             {/* <input
@@ -291,23 +294,23 @@ const SearchBar = () => {
           <label className="text-white flex items-center space-x-2">
             <span>Từ sân bay</span>
           </label>
-          <div className="flex items-center bg-white shadow rounded-lg mt-3" onClick={() => setShowDropdownTime(!showDropdownTime)}>
+          <div className="flex items-center bg-white shadow  mt-3" onClick={() => setShowDropdownTime(!showDropdownTime)}>
             <img src={icClock} alt="icon-flight" className="h-6 w-6 m-3" />
             <input
-                type="text"
-                placeholder="Giờ"
-                className="bg-transparent outline-none mx-2 w-10 text-center"
-                value={selectedHour}
-                readOnly
-              />
-              <span>:</span>
-              <input
-                type="text"
-                placeholder="Phút"
-                className="bg-transparent outline-none mx-2 w-10 text-center"
-                value={selectedMinute}
-                readOnly
-              />
+              type="text"
+              placeholder="Giờ"
+              className="bg-transparent outline-none mx-2 w-10 text-center"
+              value={selectedHour}
+              readOnly
+            />
+            <span>:</span>
+            <input
+              type="text"
+              placeholder="Phút"
+              className="bg-transparent outline-none mx-2 w-10 text-center"
+              value={selectedMinute}
+              readOnly
+            />
           </div>
           {showDropdownTime && (
             <div className="absolute top-full left-0 bg-white shadow rounded-lg mt-3 w-full max-h-64 overflow-y-auto">
@@ -339,7 +342,7 @@ const SearchBar = () => {
               </div>
               <div className="flex justify-center p-2">
                 <button
-                  className="bg-blue-500 text-white p-2 rounded-lg"
+                  className="bg-blue-500 text-white p-2 rounded-r-lg"
                   onClick={handleConfirm}
                 >
                   Xác nhận
@@ -350,8 +353,8 @@ const SearchBar = () => {
         </div>
         {/* Search Button */}
         <Link to="/listBooking">
-          <div className="text-white flex items-center mt-10">
-            <button className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+          <div className="text-white flex items-center mt-[2.7rem]">
+            <button className="bg-blue-900 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition duration-200">
               <img src={icSearch} alt="icon-search" className="h-6 w-6 m-1" />
             </button>
           </div>

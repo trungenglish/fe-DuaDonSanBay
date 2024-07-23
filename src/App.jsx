@@ -4,7 +4,6 @@ import SearchBar from "./components/header/Search.jsx";
 import { MainHome } from "./components/main/home/MainHome.jsx";
 import { ListBooking } from "./components/main/listBooking/ListBooking.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 function App() {
   return (
     <Router>
