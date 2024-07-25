@@ -2,7 +2,14 @@ import Avatar from '../../../assets/NiceService.png';
 import listIcon from '../../../assets/user-booking-ic.svg'
 import OnButtonIcon from '../../../assets/On_button.svg'
 import HistoryBookingIcon from '../../../assets/history-booking-ic.svg'
+
+function handleClick(event, to) {
+    event.preventDefault();
+    window.location.href = to;
+  }
+
 function LeftNavBar() {
+    
     return ( 
         <div className="w-[40%] mt-10 mr-[24px]">
             <div className="bg-[#EDEDED] border-2 rounded-lg shadow border-slate-400">
@@ -29,6 +36,8 @@ function LeftNavBar() {
                         </div>
                     </div>
 
+                    <a href='/my-booking/history-booking' 
+                       onClick={(event) => handleClick(event, '/my-booking/history-booking')}>
                     <div className="w-full hover:bg-slate-100">
                         <div className="inline-flex items-center px-4 py-2">
                             <div className="mr-2">
@@ -38,6 +47,7 @@ function LeftNavBar() {
                             <div className="text-lg font-semibold">Lịch sử đặt chỗ</div>
                         </div>
                     </div>
+                    </a>
                     <hr className="my-4 border-t-2 border-slate-400 w-full" />
                     <div className="w-full hover:bg-slate-100">
                         <div className="inline-flex items-center px-4 py-2">
