@@ -1,16 +1,15 @@
 import bgMain from "../../../assets/bgMain.png";
-import Car from "../../../assets/Car.png";
-import Bus from "../../../assets/Bus.png";
-import Train from "../../../assets/Train.png";
-import NiceService from "../../../assets/NiceService.png";
-import check from "../../../assets/check.png";
+
 import vehicle from "../../../assets/Vehicle.png";
+
 import brandVehicle from "../../../assets/BrandVehicle.png";
 import icUserGray from "../../../assets/icUserGray.png";
 import baggages from "../../../assets/Baggages.png";
 import ExpandDetailCard from "./ExpandDetailCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import NavigationVehiclle from "./NavigationVehicle";
+import BenefitsVehicle from "./BenefitsVehicle";
 
 const API_BASE_URL = "https://cnpm-api-thanh-3cf82c42b226.herokuapp.com";
 
@@ -61,45 +60,9 @@ export const ListBooking = () => {
           </div>
         </div>
         {/* Vehicle */}
-        <div className="container  mx-auto flex rounded-lg my-10 bg-white shadow p-6 ml-12">
-          <div className="flex items-center ml-12">
-            <img className="w-4 h-4" src={Car} alt="Car"></img>
-            <div className="text-2xl px-2 font-bold text-blue-800">Car</div>
-          </div>
-          <div className="flex items-center ml-12">
-            <img className="w-4 h-4" src={Train} alt="Car"></img>
-            <div className="text-2xl px-2 font-bold text-blue-800">
-              Airport Train
-            </div>
-          </div>
-          <div className="flex items-center ml-12">
-            <img className="w-4 h-4" src={Bus} alt="Car"></img>
-            <div className="text-2xl px-2 font-bold text-blue-800">
-              Shuttle Bus
-            </div>
-          </div>
-        </div>
+        <NavigationVehiclle />
         {/* Advantage */}
-        <div className="container mx-auto flex items-center ml-12 relative">
-          <div className="absolute top-0 left-0">
-            <img src={NiceService} alt="NiceService"></img>
-          </div>
-          <div className="h-24 w-18"></div>
-          <div className="flex ml-10 bg-blue-900 w-full">
-            <div className="flex items-center ml-20 p-6 text-white">
-              <img className="w-4 h-4" src={check} alt="Car"></img>
-              Avaliable 24 hours
-            </div>
-            <div className="flex items-center ml-8 p-6 text-white">
-              <img className="w-4 h-4" src={check} alt="Car"></img>
-              Convenient pick-up point
-            </div>
-            <div className="flex items-center ml-8 p-6 text-white">
-              <img className="w-4 h-4" src={check} alt="Car"></img>
-              All-inclusive price
-            </div>
-          </div>
-        </div>
+        <BenefitsVehicle />
         {/*List Vehicle */}
         {dataCar.map((car,index) => (
           <div key={index} className="">
@@ -133,11 +96,9 @@ export const ListBooking = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="mt-auto font-bold" onClick={handleToggleDetails}>
                     Chi tiết xe
                   </div>
-
                 </div>
               </div>
               <div className="mr-4">

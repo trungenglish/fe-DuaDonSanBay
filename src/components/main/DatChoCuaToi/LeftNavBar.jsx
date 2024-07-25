@@ -1,3 +1,4 @@
+
 import Avatar from '../../../assets/NiceService.png';
 import listIcon from '../../../assets/user-booking-ic.svg'
 import OnButtonIcon from '../../../assets/On_button.svg'
@@ -9,7 +10,6 @@ function handleClick(event, to) {
   }
 
 function LeftNavBar() {
-    
     return ( 
         <div className="w-[40%] mt-10 mr-[24px]">
             <div className="bg-[#EDEDED] border-2 rounded-lg shadow border-slate-400">
@@ -26,6 +26,9 @@ function LeftNavBar() {
                         </div>
                     </div>
                     <hr className="my-4 border-t-2 border-slate-400 w-full" />
+
+                    <a href='/my-booking' 
+                       onClick={(event) => handleClick(event, '/my-booking')}>
                     <div className="w-full hover:bg-slate-100">
                         <div className="inline-flex items-center px-4 py-2">
                             <div className="mr-2">
@@ -35,6 +38,8 @@ function LeftNavBar() {
                             <div className="text-lg font-semibold">Đặt chỗ của tôi</div>
                         </div>
                     </div>
+                    </a>
+                    
 
                     <a href='/my-booking/history-booking' 
                        onClick={(event) => handleClick(event, '/my-booking/history-booking')}>

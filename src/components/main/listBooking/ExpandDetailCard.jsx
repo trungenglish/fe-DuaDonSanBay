@@ -15,7 +15,6 @@ function ExpandDetailCard() {
                 <div key={index} className="">
                 <h2 className="text-2xl font-bold mb-4">Cách gặp tài xế</h2>
                 <ul className="list-disc list-inside space-y-4">
-                    <li>{DetailInfo.title}</li>
                     <li>{DetailInfo.Buoc1}</li>
                     <li>{DetailInfo.Buoc2}</li>
                     <li>{DetailInfo.Buoc3}</li>
