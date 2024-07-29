@@ -1,6 +1,6 @@
 import bgMain from "../../../assets/bgMain.png";
 
-import vehicle from "../../../assets/Vehicle.png";
+// import vehicle from "../../../assets/Vehicle.png";
 
 import brandVehicle from "../../../assets/BrandVehicle.png";
 import icUserGray from "../../../assets/icUserGray.png";
